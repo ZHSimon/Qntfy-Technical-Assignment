@@ -16,9 +16,7 @@
 
 9/2:
 
-9:00 AM: Began researching Docker while working on output file writing code
-
-10:00 AM: Found a library that handles the statistical analysis - no need to reinvent the wheel
+10:00 AM: Began researching Docker while working on output file writing code. While researching, found a library that handles the statistical analysis (median, standard deviation) - no need to reinvent the wheel
 
 11:00 AM: Uploaded initial prototype to GitHub. Installed Docker, began work on Dockerfile
 
