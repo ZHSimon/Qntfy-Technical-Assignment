@@ -18,9 +18,20 @@ var keywordCounter = struct {
 }{keywords: make(map[string]int)}
 
 func main() {
-	keywordFileName := os.Args[1]
-	fileDirectory := os.Args[2]
+	keywordFileName, fileDirectory := getArgs()
 	buildKeywordMap(keywordFileName)
 	readFilesFromDirectory(fileDirectory)
 	writeOutputFile()
+}
+
+func getArgs() (string, string) {
+	keywordFileName := "keywords.txt"
+	fileDirectory := "./files"
+	if len(os.Args) > 1 {
+		keywordFileName = os.Args[1]
+	}
+	if len(os.Args) > 2 {
+		fileDirectory = os.Args[2]
+	}
+	return keywordFileName, fileDirectory
 }
