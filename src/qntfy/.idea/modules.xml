@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../main/.idea/newtogo.iml" filepath="$PROJECT_DIR$/../main/.idea/newtogo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../qntfy/.idea/newtogo.iml" filepath="$PROJECT_DIR$/../qntfy/.idea/newtogo.iml" />
     </modules>
   </component>
 </project>

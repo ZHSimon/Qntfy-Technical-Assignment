@@ -1,0 +1,12 @@
+num_dupes	106.000000
+med_length	15.000000
+std_length	16.318618
+med_tokens	1.000000
+std_length	2.081799
+//	0.000000
+check(err)	7.000000
+func	24.000000
+go	3.000000
+keyword	3.000000
+keywords	5.000000
+var	6.000000

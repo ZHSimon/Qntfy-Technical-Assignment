@@ -1,4 +1,4 @@
-package main
+package qntfy
 
 import (
 	"log"

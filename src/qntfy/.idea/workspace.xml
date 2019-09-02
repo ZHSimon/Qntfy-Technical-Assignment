@@ -24,17 +24,19 @@
     <property name="configurable.Module.GOPATH.is.expanded" value="false" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../main/files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../qntfy" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/../.." />
       <recent name="$PROJECT_DIR$/../main" />
+      <recent name="$PROJECT_DIR$/../.." />
       <recent name="$PROJECT_DIR$/../main/output" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../qntfy" />
+      <recent name="$PROJECT_DIR$/../main" />
       <recent name="$PROJECT_DIR$/../main/files" />
     </key>
   </component>
@@ -51,20 +53,28 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="newtogo" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
+      <working_directory value="$PROJECT_DIR$/../main/" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
       <package value="newtogo" />
-      <directory value="$PROJECT_DIR$/" />
+      <directory value="$PROJECT_DIR$/../main/" />
+      <filePath value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build main.go" />
-      </list>
-    </recent_temporary>
+    <configuration name="go test main" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
+      <module name="newtogo" />
+      <working_directory value="$PROJECT_DIR$/../main/" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <package value="newtogo" />
+      <directory value="$PROJECT_DIR$/../main/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
