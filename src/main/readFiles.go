@@ -10,9 +10,9 @@ import (
 	"sync"
 )
 
-func ReadFilesFromDirectory() {
+func readFilesFromDirectory(fileDirectory string) {
 	var fileWaitGroup sync.WaitGroup
-	files, err := ioutil.ReadDir("./files")
+	files, err := ioutil.ReadDir(fileDirectory)
 	check(err)
 	for _, file := range files {
 		if file.Name() != ".idea" {

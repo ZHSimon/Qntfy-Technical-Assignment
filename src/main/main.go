@@ -1,6 +1,9 @@
 package main
 
-import "sync"
+import (
+	"os"
+	"sync"
+)
 
 var dupes int
 
@@ -15,7 +18,9 @@ var keywordCounter = struct {
 }{keywords: make(map[string]int)}
 
 func main() {
-	BuildKeywordMap()
-	ReadFilesFromDirectory()
-	WriteOutputFile()
+	keywordFileName := os.Args[1]
+	fileDirectory := os.Args[2]
+	buildKeywordMap(keywordFileName)
+	readFilesFromDirectory(fileDirectory)
+	writeOutputFile()
 }

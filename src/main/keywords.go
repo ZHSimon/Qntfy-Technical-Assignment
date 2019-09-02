@@ -7,8 +7,8 @@ import (
 	"sync"
 )
 
-func BuildKeywordMap() {
-	file, err := os.Open("./keywords.txt")
+func buildKeywordMap(keywordFile string) {
+	file, err := os.Open(keywordFile)
 	check(err)
 	defer file.Close()
 

@@ -8,8 +8,8 @@ import (
 	"unicode/utf8"
 )
 
-func WriteOutputFile() {
-	f, err := os.Create("output.txt")
+func writeOutputFile() {
+	f, err := os.Create("./output/output.txt")
 	check(err)
 	defer f.Close()
 
