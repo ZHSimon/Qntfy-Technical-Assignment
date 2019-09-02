@@ -17,7 +17,7 @@ func readFilesFromDirectory(fileDirectory string) {
 	for _, file := range files {
 		if file.Name() != ".idea" {
 			fileWaitGroup.Add(1)
-			go readFile(&fileWaitGroup, file.Name())
+			go readFile(&fileWaitGroup, fileDirectory+file.Name())
 		}
 	}
 	fileWaitGroup.Wait()

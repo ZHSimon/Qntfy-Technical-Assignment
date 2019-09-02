@@ -25,8 +25,8 @@ func main() {
 }
 
 func getArgs() (string, string) {
-	keywordFileName := "keywords.txt"
-	fileDirectory := "./files"
+	keywordFileName := "./keywords.txt"
+	fileDirectory := "./files/"
 	if len(os.Args) > 1 {
 		keywordFileName = os.Args[1]
 	}
