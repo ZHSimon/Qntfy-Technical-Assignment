@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"log"
 	"os"
-	"sync"
 )
 
 func buildKeywordMap(keywordFile string) {
@@ -29,13 +28,6 @@ func addKeyword(keyword string) {
 	keywordCounter.Unlock()
 }
 
-func checkIfKeyword(keywordWaitGroup *sync.WaitGroup, word string) {
-	if isKeyword(word) {
-		incrementKeyword(word)
-	}
-	keywordWaitGroup.Done()
-}
-
 func isKeyword(word string) bool {
 	keywordCounter.RLock()
 	_, ok := keywordCounter.keywords[word]
@@ -47,4 +39,25 @@ func incrementKeyword(word string) {
 	keywordCounter.Lock()
 	keywordCounter.keywords[word]++
 	keywordCounter.Unlock()
+}
+
+func getKeywordsInLine(splitLine []string) (keywordsInLine []string) {
+	for _, word := range splitLine {
+		if isKeyword(word) {
+			keywordsInLine = append(keywordsInLine, word)
+		}
+	}
+	return keywordsInLine
+}
+
+func saveKeywordsInLine(line string, keywordsInLine []string) {
+	uniqueLines.Lock()
+	uniqueLines.lineMap[line] = keywordsInLine
+	uniqueLines.Unlock()
+}
+
+func incrementKeywords(keywords []string) {
+	for _, word := range keywords {
+		incrementKeyword(word)
+	}
 }

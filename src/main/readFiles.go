@@ -16,7 +16,7 @@ func readFilesFromDirectory(fileDirectory string) {
 	files, err := ioutil.ReadDir(fileDirectory)
 	check(err)
 	for _, file := range files {
-		if file.Name() != ".idea" {
+		if !file.IsDir() {
 			fileWaitGroup.Add(1)
 			go readFile(&fileWaitGroup, fileDirectory+file.Name())
 		}
@@ -56,28 +56,16 @@ func readFile(fileWaitGroup *sync.WaitGroup, fileName string) {
 }
 
 func processLine(lineWaitGroup *sync.WaitGroup, line string) {
-	if isDuplicateLine(line) {
-		dupes += 1
-	}
-	uniqueLineRuneLength = append(uniqueLineRuneLength, float64(utf8.RuneCountInString(line)))
-	splitLine := saveOriginalLine(line)
-	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(splitLine)))
-	checkLineForKeywords(splitLine)
+	splitLine := getLineStatistics(line)
+	keywordsInLine := parseKeywords(line, splitLine)
+	incrementKeywords(keywordsInLine)
 	lineWaitGroup.Done()
 }
 
-func isDuplicateLine(line string) bool {
-	uniqueLines.RLock()
-	_, ok := uniqueLines.lineMap[line]
-	uniqueLines.RUnlock()
-	return ok
-}
-
-func saveOriginalLine(line string) []string {
+func getLineStatistics(line string) []string {
+	uniqueLineRuneLength = append(uniqueLineRuneLength, float64(utf8.RuneCountInString(line)))
 	splitLine := splitLine(line)
-	uniqueLines.Lock()
-	uniqueLines.lineMap[line] = splitLine
-	uniqueLines.Unlock()
+	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(splitLine)))
 	return splitLine
 }
 
@@ -86,11 +74,20 @@ func splitLine(line string) []string {
 	return split
 }
 
-func checkLineForKeywords(splitLine []string) {
-	var keywordWaitGroup sync.WaitGroup
-	for _, word := range splitLine {
-		keywordWaitGroup.Add(1)
-		go checkIfKeyword(&keywordWaitGroup, word)
+func parseKeywords(line string, splitLine []string) []string {
+	if keywordsInLine, ok := isDuplicateLine(line); ok {
+		dupes += 1
+		return keywordsInLine
+	} else {
+		keywordsInLine := getKeywordsInLine(splitLine)
+		saveKeywordsInLine(line, keywordsInLine)
+		return keywordsInLine
 	}
-	keywordWaitGroup.Wait()
+}
+
+func isDuplicateLine(line string) ([]string, bool) {
+	uniqueLines.RLock()
+	value, ok := uniqueLines.lineMap[line]
+	uniqueLines.RUnlock()
+	return value, ok
 }

@@ -3,5 +3,5 @@ keyword
 //
 check(err)
 go
-.Wait()
+var
 keywords
