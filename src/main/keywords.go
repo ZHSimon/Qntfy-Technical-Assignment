@@ -29,7 +29,6 @@ func addKeyword(keyword string) {
 	keywordCounter.Unlock()
 }
 
-
 func checkIfKeyword(keywordWaitGroup *sync.WaitGroup, word string) {
 	if isKeyword(word) {
 		incrementKeyword(word)

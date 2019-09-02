@@ -1,11 +1,11 @@
-num_dupes	61.000000
+num_dupes	76.000000
 med_length	26.000000
 std_length	16.971101
 med_tokens	3.000000
 std_length	2.237385
 .Wait()	0.000000
 //	0.000000
-check(err)	7.000000
+check(err)	3.000000
 func	24.000000
 go	3.000000
 keyword	3.000000
