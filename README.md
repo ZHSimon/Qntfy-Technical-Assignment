@@ -43,8 +43,8 @@ The two args are optional.
 
 **Benchmark Results** - 
 
-I am not sure if these results are valid, or if these benchmarks are properly implemented. I do not have a Go-knowledgeable friend to check my work
+I am not sure if these results are valid, or if these benchmarks are properly implemented. I do not have a Go-knowledgeable friend to check my work and my research has been fairly inconclusive. For these benchmarks (and for my own testing), I used an old version of the code itself as the test files - after all, code is still multiline text!
 
-Main, running on sample files (old version of the code - they're multiline text files, after all!): 0.005s
+Main, running on sample files: 0.005s
 
 readFiles, running on sample files (as above): 0.0005s
