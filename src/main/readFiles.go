@@ -56,17 +56,16 @@ func readFile(fileWaitGroup *sync.WaitGroup, fileName string) {
 }
 
 func processLine(lineWaitGroup *sync.WaitGroup, line string) {
-	splitLine := getLineStatistics(line)
+	splitLine := splitLine(line)
+	getLineStatistics(line, splitLine)
 	keywordsInLine := parseKeywords(line, splitLine)
 	incrementKeywords(keywordsInLine)
 	lineWaitGroup.Done()
 }
 
-func getLineStatistics(line string) []string {
+func getLineStatistics(line string, split []string) {
 	uniqueLineRuneLength = append(uniqueLineRuneLength, float64(utf8.RuneCountInString(line)))
-	splitLine := splitLine(line)
-	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(splitLine)))
-	return splitLine
+	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(split)))
 }
 
 func splitLine(line string) []string {
