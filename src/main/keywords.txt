@@ -2,3 +2,6 @@ func
 keyword
 //
 check(err)
+go
+.Wait()
+keywords

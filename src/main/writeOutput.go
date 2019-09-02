@@ -26,8 +26,8 @@ func writeDupes(file *os.File) {
 
 func writeStatisticalData(file *os.File) {
 	keys, tokens := getCountOfKeysAndTokens()
-	writeMedianAndStandardDeviation(keys, file)
-	writeMedianAndStandardDeviation(tokens, file)
+	writeMedianAndStandardDeviation("med_length", keys, file)
+	writeMedianAndStandardDeviation("med_tokens", tokens, file)
 }
 
 func getCountOfKeysAndTokens() (keys []float64, tokens []float64) {
@@ -44,8 +44,8 @@ func getCountOfKeysAndTokens() (keys []float64, tokens []float64) {
 	return
 }
 
-func writeMedianAndStandardDeviation(data []float64, file *os.File) {
-	writeLine(file, "med_length", getMedian(data))
+func writeMedianAndStandardDeviation(medLabel string, data []float64, file *os.File) {
+	writeLine(file, medLabel, getMedian(data))
 	writeLine(file, "std_length", getStandardDeviation(data))
 }
 

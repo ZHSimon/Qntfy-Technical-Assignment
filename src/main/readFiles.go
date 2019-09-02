@@ -12,11 +12,13 @@ import (
 
 func ReadFilesFromDirectory() {
 	var fileWaitGroup sync.WaitGroup
-	files, err := ioutil.ReadDir("./")
+	files, err := ioutil.ReadDir("./files")
 	check(err)
 	for _, file := range files {
-		fileWaitGroup.Add(1)
-		go readFile(&fileWaitGroup, file.Name())
+		if file.Name() != ".idea" {
+			fileWaitGroup.Add(1)
+			go readFile(&fileWaitGroup, file.Name())
+		}
 	}
 	fileWaitGroup.Wait()
 }
