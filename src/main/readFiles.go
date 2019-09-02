@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"unicode/utf8"
 )
 
 func readFilesFromDirectory(fileDirectory string) {
@@ -57,10 +58,11 @@ func readFile(fileWaitGroup *sync.WaitGroup, fileName string) {
 func processLine(lineWaitGroup *sync.WaitGroup, line string) {
 	if isDuplicateLine(line) {
 		dupes += 1
-	} else {
-		splitLine := saveOriginalLine(line)
-		checkLineForKeywords(splitLine)
 	}
+	uniqueLineRuneLength = append(uniqueLineRuneLength, float64(utf8.RuneCountInString(line)))
+	splitLine := saveOriginalLine(line)
+	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(splitLine)))
+	checkLineForKeywords(splitLine)
 	lineWaitGroup.Done()
 }
 

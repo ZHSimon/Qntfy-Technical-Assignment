@@ -1,0 +1,12 @@
+num_dupes	95.000000
+med_length	16.000000
+std_length	18.321472
+med_tokens	1.000000
+std_length	2.081036
+.Wait()	0.000000
+//	0.000000
+check(err)	7.000000
+func	24.000000
+go	3.000000
+keyword	3.000000
+keywords	5.000000

@@ -12,6 +12,9 @@ var uniqueLines = struct {
 	lineMap map[string][]string
 }{lineMap: make(map[string][]string)}
 
+var uniqueLineRuneLength []float64
+var uniqueLineTokenLength []float64
+
 var keywordCounter = struct {
 	sync.RWMutex
 	keywords map[string]int

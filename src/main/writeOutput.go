@@ -5,19 +5,18 @@ import (
 	"github.com/montanaflynn/stats"
 	"os"
 	"sort"
-	"unicode/utf8"
 )
 
 func writeOutputFile() {
-	f, err := os.Create("./output/output.txt")
+	file, err := os.Create("./output/output.txt")
 	check(err)
-	defer f.Close()
+	defer file.Close()
 
-	writeDupes(f)
+	writeDupes(file)
 
-	writeStatisticalData(f)
+	writeStatisticalData(file)
 
-	writeKeywordCount(f)
+	writeKeywordCount(file)
 }
 
 func writeDupes(file *os.File) {
@@ -25,23 +24,8 @@ func writeDupes(file *os.File) {
 }
 
 func writeStatisticalData(file *os.File) {
-	keys, tokens := getCountOfKeysAndTokens()
-	writeMedianAndStandardDeviation("med_length", keys, file)
-	writeMedianAndStandardDeviation("med_tokens", tokens, file)
-}
-
-func getCountOfKeysAndTokens() (keys []float64, tokens []float64) {
-	i := 0 //I read that this was up to 20% faster than using append() to achieve a cleaner-looking result
-	uniqueLines.RLock()
-	keys = make([]float64, len(uniqueLines.lineMap))
-	tokens = make([]float64, len(uniqueLines.lineMap))
-	for key, value := range uniqueLines.lineMap {
-		keys[i] = float64(utf8.RuneCountInString(key))
-		tokens[i] = float64(len(value))
-		i++
-	}
-	uniqueLines.RUnlock()
-	return
+	writeMedianAndStandardDeviation("med_length", uniqueLineRuneLength, file)
+	writeMedianAndStandardDeviation("med_tokens", uniqueLineTokenLength, file)
 }
 
 func writeMedianAndStandardDeviation(medLabel string, data []float64, file *os.File) {
@@ -55,9 +39,9 @@ func getMedian(list []float64) float64 {
 	return median
 }
 
-func writeLine(f *os.File, key string, value float64) {
+func writeLine(file *os.File, key string, value float64) {
 	data := fmt.Sprintf("%s\t%f\n", key, value)
-	_, err := f.WriteString(data)
+	_, err := file.WriteString(data)
 	check(err)
 }
 
