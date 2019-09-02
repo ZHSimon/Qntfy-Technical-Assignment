@@ -47,4 +47,4 @@ I am not sure if these results are valid, or if these benchmarks are properly im
 
 Main, running on sample files: 0.005s
 
-readFiles, running on sample files (as above): 0.0005s
+readFiles, running on sample files: 0.0005s
