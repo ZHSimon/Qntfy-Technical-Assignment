@@ -16,9 +16,7 @@
 
 9/2:
 
-9:00 AM: Began researching Docker while working on output file writing code
-
-10:00 AM: Found a library that handles the statistical analysis - no need to reinvent the wheel
+10:00 AM: Began researching Docker while working on output file writing code. While researching, found a library that handles the statistical analysis (median, standard deviation) - no need to reinvent the wheel
 
 11:00 AM: Uploaded initial prototype to GitHub. Installed Docker, began work on Dockerfile
 
@@ -42,3 +40,12 @@ I am not sure if these results are valid, or if these benchmarks are properly im
 Main, running on sample files: 0.005s
 
 readFiles, running on sample files: 0.0005s
+
+
+**Note**
+
+I was unsure of the best way to bring in files for testing, and as I'm new to Golang, I went with a simple approach that I could validate on my own. I do not know Docker well enough to determine if there is a better, simpler, or perhaps an obvious way I should have gone about it, but I will be looking into it in the coming days.
+
+The keywords.txt file contains the sample keywords I used for my testing. You can add the path to a different keyword file as the first argument when using <go run> to execute the program.
+  
+The /files/ directory contains the sample files I used for my testing. You can add the path to a different directory of files to use as the second argument when using <go run> as above.
