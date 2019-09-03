@@ -1,15 +1,11 @@
 version: '3'
 services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
+  app:
+    container_name: "qntfy"
+    build: "./"
     volumes:
-      - .:/code
-      - logvolume01:/var/log
-    links:
-      - redis
-  redis:
-    image: redis
-volumes:
-  logvolume01: {}
+      - "./."
+    ports:
+      - "8080:8080"
+    environment:
+      GO_WORK_DIR: "./src/qntfy"

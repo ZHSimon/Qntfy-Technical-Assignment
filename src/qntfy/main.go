@@ -6,6 +6,7 @@ import (
 )
 
 var dupes int
+var countDuplicateLines = false
 
 var uniqueLines = struct {
 	sync.RWMutex

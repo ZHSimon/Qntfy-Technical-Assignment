@@ -56,16 +56,14 @@ func readFile(fileWaitGroup *sync.WaitGroup, fileName string) {
 }
 
 func processLine(lineWaitGroup *sync.WaitGroup, line string) {
-	splitLine := splitLine(line)
-	getLineStatistics(line, splitLine)
-	keywordsInLine := parseKeywords(line, splitLine)
-	incrementKeywords(keywordsInLine)
-	lineWaitGroup.Done()
-}
 
-func getLineStatistics(line string, split []string) {
-	uniqueLineRuneLength = append(uniqueLineRuneLength, float64(utf8.RuneCountInString(line)))
-	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(split)))
+	splitLine := splitLine(line)
+	if keywordsInLine, ok := isDuplicateLine(line); ok {
+		handleDuplicateLine(line, splitLine, keywordsInLine)
+	} else {
+		handleUniqueLine(line, splitLine)
+	}
+	lineWaitGroup.Done()
 }
 
 func splitLine(line string) []string {
@@ -73,20 +71,33 @@ func splitLine(line string) []string {
 	return split
 }
 
-func parseKeywords(line string, splitLine []string) []string {
-	if keywordsInLine, ok := isDuplicateLine(line); ok {
-		dupes += 1
-		return keywordsInLine
-	} else {
-		keywordsInLine := getKeywordsInLine(splitLine)
-		saveKeywordsInLine(line, keywordsInLine)
-		return keywordsInLine
-	}
-}
-
 func isDuplicateLine(line string) ([]string, bool) {
 	uniqueLines.RLock()
 	value, ok := uniqueLines.lineMap[line]
 	uniqueLines.RUnlock()
 	return value, ok
+}
+
+func handleDuplicateLine(line string, splitLine []string, keywordsInLine []string) {
+	if countDuplicateLines {
+		recordLineStats(line, splitLine, keywordsInLine)
+	}
+	dupes += 1
+}
+
+func recordLineStats(line string, splitLine []string, keywordsInLine []string) {
+	getLineStatistics(line, splitLine)
+	incrementKeywords(keywordsInLine)
+}
+
+func getLineStatistics(line string, split []string) {
+	uniqueLineRuneLength = append(uniqueLineRuneLength, float64(utf8.RuneCountInString(line)))
+	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(split)))
+}
+
+
+func handleUniqueLine(line string, splitLine []string) {
+	keywordsInLine := getKeywordsInLine(splitLine)
+	saveKeywordsInLine(line, keywordsInLine)
+	recordLineStats(line, splitLine, keywordsInLine)
 }
