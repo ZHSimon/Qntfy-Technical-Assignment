@@ -95,7 +95,6 @@ func getLineStatistics(line string, split []string) {
 	uniqueLineTokenLength = append(uniqueLineTokenLength, float64(len(split)))
 }
 
-
 func handleUniqueLine(line string, splitLine []string) {
 	keywordsInLine := getKeywordsInLine(splitLine)
 	saveKeywordsInLine(line, keywordsInLine)
