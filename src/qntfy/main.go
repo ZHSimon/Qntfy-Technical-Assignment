@@ -1,4 +1,4 @@
-package qntfy
+package main
 
 import (
 	"os"
