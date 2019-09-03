@@ -32,6 +32,10 @@
 
 3:15 PM: Created this timeline.
 
+9/3:
+
+10:00 AM: Dug back into docker-compose up issues. While I can run the app using go run \*.go, I cannot get it to run via docker-compose up. "go run: cannot run non-main package".
+
 
 **Benchmark Results** - 
 
