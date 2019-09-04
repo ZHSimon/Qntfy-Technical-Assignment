@@ -36,6 +36,9 @@
 
 10:00 AM: Dug back into docker-compose up issues. While I can run the app using go run \*.go, I cannot get it to run via docker-compose up. "go run: cannot run non-main package".
 
+9/4:
+
+1:00 PM: Gave the Dockerfile another go - was able to successfully prove that the code is running by viewing the output in the terminal log, but not able to locate the file in the Container. Additionally, looked into using sync.Map instead of maps to reduce wait times for locked maps.
 
 **Benchmark Results** - 
 
