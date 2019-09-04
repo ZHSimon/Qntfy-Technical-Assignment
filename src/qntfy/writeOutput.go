@@ -43,6 +43,7 @@ func writeLine(file *os.File, key string, value float64) {
 	data := fmt.Sprintf("%s\t%f\n", key, value)
 	_, err := file.WriteString(data)
 	check(err)
+	fmt.Printf(data)
 }
 
 func getStandardDeviation(list []float64) float64 {

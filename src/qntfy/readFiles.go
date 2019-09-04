@@ -25,6 +25,7 @@ func readFilesFromDirectory(fileDirectory string) {
 }
 
 func readFile(fileWaitGroup *sync.WaitGroup, fileName string) {
+	defer fileWaitGroup.Done()
 	var lineWaitGroup sync.WaitGroup
 	const BufferSize = 1048576
 	file, err := os.Open(fileName)
@@ -52,18 +53,16 @@ func readFile(fileWaitGroup *sync.WaitGroup, fileName string) {
 		}
 	}
 	lineWaitGroup.Wait()
-	fileWaitGroup.Done()
 }
 
 func processLine(lineWaitGroup *sync.WaitGroup, line string) {
-
+	defer lineWaitGroup.Done()
 	splitLine := splitLine(line)
 	if keywordsInLine, ok := isDuplicateLine(line); ok {
 		handleDuplicateLine(line, splitLine, keywordsInLine)
 	} else {
 		handleUniqueLine(line, splitLine)
 	}
-	lineWaitGroup.Done()
 }
 
 func splitLine(line string) []string {

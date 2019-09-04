@@ -4,4 +4,4 @@ WORKDIR /go/src/qntfy
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 RUN go get github.com/montanaflynn/stats
-CMD ["go", "run", "."]
+CMD ["go", "run", "main.go", "keywords.go", "readFiles.go", "utils.go", "writeOutput.go"]
